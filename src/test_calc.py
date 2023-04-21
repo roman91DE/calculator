@@ -5,7 +5,6 @@ from sympy import sympify
 from calc import calculateExpressionString
 
 
-
 class TestCalc(unittest.TestCase):
 
     CASES = [
