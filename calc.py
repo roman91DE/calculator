@@ -37,17 +37,22 @@ def calculateTokenizedExpression(tokens: list[str]) -> float:
     if len(tokens) == 1:
         return float(tokens[0])
     for operator_kind in operatorMapping.keys():
-        for op in operatorMapping[operator_kind].keys():
-            if op in tokens:
-                index = tokens.index(op)
-                operator = operatorMapping[operator_kind][op]
+        for token in tokens:
+            if token in operatorMapping[operator_kind].keys():
+                index = tokens.index(token)
+                operator = operatorMapping[operator_kind][token]
                 left = tokens[index - 1]
                 right = tokens[index + 1]
                 evaluation = operator(float(left), float(right))
                 new_tokens = tokens[: index - 1] + [evaluation] + tokens[index + 2 :]
                 return calculateTokenizedExpression(new_tokens)
+
     else:
         raise ValueError("Invalid expression")
+    
+def calculateExpressionString(s: str) -> float:
+    tokens = tokenizeExpressionString(s)
+    return calculateTokenizedExpression(tokens)
 
 
 def main():
@@ -56,9 +61,8 @@ def main():
         return 1
 
     for expression in argv[1:]:
-        tokens = tokenizeExpressionString(expression)
-        result = calculateTokenizedExpression(tokens)
-        print(result)
+        print(f"{expression} = {calculateExpressionString(expression)}")
+    return 0
 
 
 if __name__ == "__main__":
