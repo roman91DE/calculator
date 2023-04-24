@@ -1,0 +1,17 @@
+{
+    "configurations": [
+    {
+        "name": "(lldb) Launch",
+        "type": "cppdbg",
+        "preLaunchTask": "C/C++: clang build active file",
+        "request": "launch",
+        "program": "/Users/rmn/Repos/calculator/src/main",
+        "args": ["12+44*(2+3)"],
+        "stopAtEntry": false,
+        "cwd": "${fileDirname}",
+        "environment": [],
+        "externalConsole": false,
+        "MIMode": "lldb"
+    }
+    ]
+}
